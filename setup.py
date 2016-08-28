@@ -18,7 +18,7 @@ BANNER = '''
 print BANNER
 
 print '[+] Checking user- requires running as root: %s' % (CheckUser(), )
-#print '[+] Checking Internet - requires Internet connectivity: %s' % (CheckInet(),)
+print '[+] Checking Internet - requires Internet connectivity: %s' % (CheckInet(),)
 print '[+] Checking Apache- if installed'
 if CheckServer() == None:
   Quit('[!] Sadly, we currently only support Apache\n[~] Please install Apache first')

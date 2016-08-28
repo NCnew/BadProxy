@@ -172,7 +172,10 @@
     }
     textarea{
       height: 450px;
-      width: 750px;
+      width: 100%;
+    }
+    div{
+      text-align: justify;
     }
     ol li:hover{
       cursor: pointer;
@@ -204,7 +207,7 @@
             <li role="presentation"><a onclick='list_payloads()'>List PAYLOADS</a></li>
           </ul>
       </div>
-      <div class="col-md-4 selector" style="padding:2%;">
+      <div class="col-md-6 selector" style="padding:2%;">
       </div>
     </div>
   </div>

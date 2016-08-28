@@ -54,9 +54,6 @@ def Call(cmd):
     Quit('\t [~] ;( Something went wrong')
   return retcode
 
-# MAKE THINGS WRITABLE
-Call(['chmod', 'o+w', PAYLOAD])
-Call(['chmod', 'o+wx', REWRITER])
 
 # redefine raw_input
 def Input(query):
@@ -142,8 +139,11 @@ def Configure():
   except:
     Quit('[i] Something went wrong')
 
-  Call(['sed', '-ri', 's,^(http_port )[[:digit:]]+?,\\1'+str(port)+',I', SQUID_CONF])
+  Call(['touch', PAYLOAD])
+  Call(['chmod', 'o+w', PAYLOAD])
+  Call(['chmod', 'o+wx', REWRITER])
   Call(['ln', '-srf', PAYLOAD, ROOT])
+  Call(['sed', '-ri', 's,^(http_port )[[:digit:]]+?,\\1'+str(port)+',I', SQUID_CONF])
   print '\n\n[~] Congratulations !! It\'s all done now ;)'
   Input('[~] For more info, refer to README.MD')
   Options()
@@ -302,6 +302,7 @@ def Options():
 	  StartSQUID()
 	  Write(PAYLOAD, PASARELA)
   	  Write(TMPPATH+LOGGERNAME, LOGGER)
+  	  Call(['chmod', 'o+w', TMPPATH+LOGGERNAME])
 	  Input('\t [+] Username: badproxy, password: badproxy ')
   	elif pref == '2':
 	  StartSQUID()
