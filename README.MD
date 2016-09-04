@@ -48,7 +48,7 @@ Download the tool from the github
 # Configurion  
    By defult tool will configure the squid proxy at port 8080, if you want to change the post then you can answer Y and do so.
    If you are good with the squid configuration you can change all other options of squid.conf file.(Be careful if you are not used to it)
-   
+
    ![Select Y to change port ](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_002.png "Click Yes to configure the port number defult is 8080")
 
 
@@ -65,17 +65,17 @@ Download the tool from the github
 	 + [H] HELP                                                   +
 	 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                   	 Press ^C To EXIT  
-	 > 
+	 >
 ```
 	***We recommended  to go to start GUI for easy access give input 4.***
 
    ![Select options for accorindg to requred function ](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_005.png "Click anyone one of the input for the options")
-   
+
 
 # To access the gui http://127.0.0.1/badproxy/index.php
     Username and password by defult will be badproxy:badproxy  
    ![Login to the dashboard to see further options ](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_006.png "Login with username and pass badproxy:badproxy")
-   
+
 
 ```
     The GUI do have following features
@@ -89,11 +89,11 @@ Download the tool from the github
 
 # Features
   ![Features availabe form attack) ](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_007.png "Features avilabe for attack")
-  
 
-# Enable/disable RAT Infection 
+
+# Enable/disable RAT Infection
   ![Login to the dashboard to see further options (Execute replace with the RAT) ](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_008.png "Replace all executable with RAT")
- 
+
 
 # Update JavaScript being injected  
   ![Login to the dashboard to update the javascript accorinding to your will ] (https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_009.png "All the update JavaScript form the dashboard will be injected to viticm browser")
@@ -116,11 +116,10 @@ Many more ...
 
 Information Security Researcher
 
-            
+
 **QRLJACKING**  
 QRLJacking or Quick Response Code Login Jacking is a simple social engineering attack vector capable of session hijacking affecting all applications that rely on “Login with QR code” feature as a secure way to login into accounts. In a simple way, In a nutshell victim scans the attacker’s QR code results of session hijacking.
 
 **Enable/Disable RAT infection**
 
-Proxy will replace all the executable content with the backdoor rat execuatable.
-
+Proxy will replace all the executable content with the back-door rat executable.
