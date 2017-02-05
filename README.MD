@@ -19,7 +19,7 @@ BADPROXY provides both Command Line & Graphical User Interface. The basic work-f
 
 
 **License**:  
-Refer to [LICENSE](license)
+Refer to [LICENSE](LICENSE)
 
 
 #INSTALLATION
