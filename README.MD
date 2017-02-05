@@ -72,16 +72,6 @@ BADPROXY will setup squid proxy on port 8080, by default. However, you can confi
 To start GUI, enter `4` and browse to [http://127.0.0.1/badproxy/index.php](http://127.0.0.1/badproxy/index.php) with username/password `badproxy`.
 ![Login](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_006.png "Login")
 
-
-# Features
-**Using GUI, you can**;
-    \- READ Keylogs  
-    \- Update JavaScript being injected  
-    \- Enable/disable RAT Infection  
-    \- Inject QRLJacking phishing ads  
-    \- Inject Google Analytics  
-    \- List installed plug-ins on victim's browser
-
 ![Features](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_007.png "Features")
 
 **Enable/disable RAT Infection**
