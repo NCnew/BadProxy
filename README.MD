@@ -1,59 +1,59 @@
 #DESCRIPTION
-**BADPROXY** is inspired by the talk [Owning Bad Guys {& Mafia} with JavaScript Botnets](https://media.blackhat.com/bh-us-12/Briefings/Alonso/BH_US_12_Alonso_Owning_Bad_Guys_WP.pdf) from [DEFCON 20 and Blackhat USA 2012](https://media.blackhat.com/bh-us-12/Briefings/Alonso/BH_US_12_Alonso_Owning_Bad_Guys_WP.pdf), which essentially talks about proxies’ ability to modify contents on the fly. It completely automates things the author has shown. Though it has been years, use of proxies is still widespread- for anonymity. The answer to anonymity still suggests using proxies- [so does Google](https://lmgify.com?q=how+to+become+anonymous). Using proxies may open door to a wide range of attack surface. Unless the connection is encrypted, a proxy server can easily *add/edit/delete* contents of requested resources- HTTP requests/responses. In fact, it is what a proxy is designed for.
+**BADPROXY** was inspired by the talk [Owning Bad Guys {& Mafia} with JavaScript Botnets](https://media.blackhat.com/bh-us-12/Briefings/Alonso/BH_US_12_Alonso_Owning_Bad_Guys_WP.pdf) from DEFCON 20 and Blackhat USA 2012 which essentially talks about proxies’ ability to modify contents on the fly. What BADPROXY does is- completely automate things the author has shown. Though it has been years, use of proxies is still widespread- for anonymity. The answer to anonymity still suggests using proxies- [so does Google](https://lmgify.com?q=how+to+become+anonymous). Using proxies may hide your IP but it also opens door to a wide range of attacks. Unless the connection is encrypted, a proxy server can easily *add/edit/delete* contents of requested resources; both requests & responses.
 
-BADPROXY, beside automation, also provides ability to work along side [**BeEF**](https://github.com/beefproject/beef). It also integrates [QRLJacking](https://www.owasp.org/index.php/Qrljacking), which requires little help from users of course. The best of all, it allows you to serve **RAT** instead of intended exe.
+BADPROXY, beside automation, also provides ability to work along side [**BeEF**](https://github.com/beefproject/beef). It also integrates [QRLJacking](https://www.owasp.org/index.php/Qrljacking) which requires little help from you of course. The best of all- it allows you to serve **RAT** instead of intended exe.
 
-Though it has been developed specifically for **Debian**, basic setup are same for all Linux distributions. The actual commands, however, may differ slightly, please update it accordingly to suit your needs.  
+Though it has been developed specifically for **Debian**, basic setup are same for all Linux distributions. The actual commands, however, may differ slightly, please update it accordingly to suit your needs. If you've already installed squid which is below version 3, you might face difficulty making thigs work.
 
 **Features**:  
 BADPROXY provides both Command Line & Graphical User Interface. The basic work-flow starts with CLI mode, where one can  
-- Setup a proxy server which installs and/or configures SQUID  
-- Work along side BeEF  
-- Start GUI interface  
+\- Setup a proxy server which installs and/or configures SQUID  
+\- Work along side BeEF  
+\- Start GUI interface  
 **Using GUI interface one can**  
-- READ Keylogs  
-- Update JavaScript being injected  
-- Enable/disable RAT Infection  
-- Inject QRLJacking phishing ads  
-- Inject Google Analytics  
+\- READ Keylogs
+\- Update JavaScript being injected  
+\- Enable/disable RAT Infection  
+\- Inject QRLJacking phishing ads  
+\- Inject Google Analytics  
 
 
 **License**:  
-Read the [LICENSE](license) file copyright information.
+Refer to [LICENSE](license)
 
 
 #INSTALLATION
 **Requirements**:  
-The followings are required to be able to run BADPROXY;  
-- Python  
-- PHP  
-- Apache  
+The followings must be preinstalled on your system for running BADPROXY;  
+\- Python  
+\- PHP  
+\- Apache  
+
 
 **Supported platforms/languages**:  
 The followings are supported platforms and/or languages;  
-- Debian linux  
-- PHP  
-- Python  
+\- Debian Linux  
+\- PHP  
+\- Python  
 
 
 #USAGE
-Download the tool from the github
-> git clone https://github.com/NCnew/BadProxy.git  
+```
+$ git clone https://github.com/NCnew/BadProxy.git
+$ cd BadProxy/; sudo python setup.py
+```
+![Install](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_001.png "Install")
 
-# Run the $./setup.py file with root permission  
-![Run ./setup.py](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_001.png "Install the tool with ./setup.py")
-
-**Script will check the required dependencies and ask with Y/N to install the required dependencies**
+You'll be prompted for confirmation during setup.
 
 # Configurion  
-   By defult tool will configure the squid proxy at port 8080, if you want to change the post then you can answer Y and do so.
-   If you are good with the squid configuration you can change all other options of squid.conf file.(Be careful if you are not used to it)
+BADPROXY will setup squid proxy on port 8080, by default. However, you can configure it during configuration or you can also edit squid.conf directly, but, be careful, if you are not used to it.
 
-   ![Select Y to change port ](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_002.png "Click Yes to configure the port number defult is 8080")
+ ![Configure](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_002.png "Configure")
 
 
 # Options
-```
+```bash
 	 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 + [1] Start SQUID (with Keylogger)                           +
 	 + [2] Start SQUID alongside BeEF (*nix only)                 +
@@ -67,59 +67,43 @@ Download the tool from the github
                   	 Press ^C To EXIT  
 	 >
 ```
-	***We recommended  to go to start GUI for easy access give input 4.***
+![Start GUI](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_005.png "Start GUI")
 
-   ![Select options for accorindg to requred function ](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_005.png "Click anyone one of the input for the options")
+To start GUI, enter `4` and browse to [http://127.0.0.1/badproxy/index.php](http://127.0.0.1/badproxy/index.php) with username/password `badproxy`.
+![Login](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_006.png "Login")
 
-
-# To access the gui http://127.0.0.1/badproxy/index.php
-    Username and password by defult will be badproxy:badproxy  
-   ![Login to the dashboard to see further options ](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_006.png "Login with username and pass badproxy:badproxy")
-
-
-```
-    The GUI do have following features
-    - READ Keylogs  
-    - Update JavaScript being injected  
-    - Enable/disable RAT Infection  
-    - Inject QRLJacking phishing ads  
-    - Inject Google Analytics  
-    - List installed plug-ins on victim's browser  
-```
 
 # Features
-  ![Features availabe form attack) ](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_007.png "Features avilabe for attack")
+**Using GUI, you can**;
+    \- READ Keylogs  
+    \- Update JavaScript being injected  
+    \- Enable/disable RAT Infection  
+    \- Inject QRLJacking phishing ads  
+    \- Inject Google Analytics  
+    \- List installed plug-ins on victim's browser
 
+![Features](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_007.png "Features")
 
-# Enable/disable RAT Infection
-  ![Login to the dashboard to see further options (Execute replace with the RAT) ](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_008.png "Replace all executable with RAT")
+**Enable/disable RAT Infection**
+  ![Toggle RAT Infection](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_008.png "Toggle RAT Infection")
 
+**Update JavaScript being injected**
+  ![Update JavaScript] (https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_009.png "Update JavasCript")
 
-# Update JavaScript being injected  
-  ![Login to the dashboard to update the javascript accorinding to your will ] (https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_009.png "All the update JavaScript form the dashboard will be injected to viticm browser")
+**QRLJACKING**  
+QRLJacking or Quick Response Code Login Jacking is a simple social engineering attack vector capable of session hijacking affecting all applications that rely on “Login with QR code” feature as a secure way to login into accounts. In a simple way, In a nutshell victim scans the attacker’s QR code results of session hijacking.
 
-```
-***Comming soon feature list**
-1.Extension backdoor injection
-2.Backdoor Factory
-3.GUI map of vitcim ip
-4.Database to store the ip list and capture details.
+**Toggle RAT Infection**
+This will replace the content of executables with your provided RAT.
 
-Many more ...
-
-```
+# TODO
+1. Integrate Backdoor Factory
+2. Employ map of infected machines
+3. Integrate database to store IP and others
 
 # Author
 
 [Nabin Kc](@CNew) &
 [Prakash Sharma](@1lastBr3ath)
 
-Information Security Researcher
-
-
-**QRLJACKING**  
-QRLJacking or Quick Response Code Login Jacking is a simple social engineering attack vector capable of session hijacking affecting all applications that rely on “Login with QR code” feature as a secure way to login into accounts. In a simple way, In a nutshell victim scans the attacker’s QR code results of session hijacking.
-
-**Enable/Disable RAT infection**
-
-Proxy will replace all the executable content with the back-door rat executable.
+Security researchers
