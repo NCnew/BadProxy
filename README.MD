@@ -46,7 +46,7 @@ $ cd BadProxy/; sudo python setup.py
 
 You'll be prompted for confirmation during setup.
 
-# Configurion  
+# Configuration    
 BADPROXY will setup squid proxy on port 8080, by default. However, you can configure it during configuration or you can also edit squid.conf directly, but, be careful, if you are not used to it.
 
  ![Configure](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_002.png "Configure")
@@ -74,16 +74,16 @@ To start GUI, enter `4` and browse to [http://127.0.0.1/badproxy/index.php](http
 
 ![Features](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_007.png "Features")
 
-**Enable/disable RAT Infection**
+**Enable/disable RAT Infection**    
   ![Toggle RAT Infection](https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_008.png "Toggle RAT Infection")
 
-**Update JavaScript being injected**
+**Update JavaScript being injected**    
   ![Update JavaScript] (https://github.com/NCnew/BadProxy/blob/master/proxyboard/images/screenshot/Selection_009.png "Update JavasCript")
 
 **QRLJACKING**  
 QRLJacking or Quick Response Code Login Jacking is a simple social engineering attack vector capable of session hijacking affecting all applications that rely on “Login with QR code” feature as a secure way to login into accounts. In a simple way, In a nutshell victim scans the attacker’s QR code results of session hijacking.
 
-**Toggle RAT Infection**
+**Toggle RAT Infection**    
 This will replace the content of executables with your provided RAT.
 
 # TODO
