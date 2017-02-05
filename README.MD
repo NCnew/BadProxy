@@ -90,6 +90,7 @@ This will replace the content of executables with your provided RAT.
 1. Integrate Backdoor Factory
 2. Employ map of infected machines
 3. Integrate database to store IP and others
+4. Integrade docker to support multiple OS
 
 # Author
 
